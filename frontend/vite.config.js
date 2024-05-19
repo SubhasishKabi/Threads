@@ -9,8 +9,7 @@ export default defineConfig({
 		// Get rid of the CORS error
 		proxy: {
 			"/api": {
-				// target: "http://localhost:5000",
-				target: "https://threads-1-zs0t.onrender.com",
+				target: "http://localhost:5000",
 				changeOrigin: true,
 				secure: false,
 			},
