@@ -5,16 +5,13 @@ import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
-import path from "path";
 
-import { v2 as cloudinary } from "cloudinary";
+import {v2 as cloudinary} from "cloudinary";
 import { app, server } from "./socket/socket.js";
 
 
 dotenv.config();
 connectDB();
-
-const __dirname = path.resolve()
 
 
 const PORT = process.env.PORT || 5000;
@@ -36,15 +33,6 @@ app.use(cookieParser())
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/messages", messageRoutes);
-
-
-if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "/frontend/dist")))
-
-	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
-	})
-}
 
 
 
